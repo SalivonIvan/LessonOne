@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class DistBetweenNum {
 
-    private static final int VALUES_IN_ARRAY = 10;
-    private static final int MAX_VALUES = 10;
-    private int[] arr={1,2,3,4,1,2,3,4};
+    private static final int VALUES_IN_ARRAY = 200;
+    private static final int MAX_VALUES = 20;
+    private int[] arr;
 
     private Integer min1;
     private Integer min2;
@@ -24,11 +24,9 @@ public class DistBetweenNum {
 
     public static void main(String[] args) {
         DistBetweenNum var = new DistBetweenNum();
-//        var.createArray();
+        var.createArray();
         var.readArray(var.getArr());
         var.calculateMinNum();
-        System.out.println(var.getMin1());
-        System.out.println(var.getMin2());
     }
 
     public void createArray() {
@@ -55,9 +53,11 @@ public class DistBetweenNum {
     }
 
     public void calculateMinNum() {
+        if (arr.length != 0) {
+            calculateMin1Num();
+            calculateMin2Num();
+        }
 
-        calculateMin1Num();
-        calculateMin2Num();
         outResultDist();
     }
 
@@ -100,7 +100,7 @@ public class DistBetweenNum {
     }
 
     private void outResultDist() {
-        if (arr.length == 1 || min2 == null) {
+        if ((arr.length == 1 || min2 == null) || arr.length == 0) {
             System.out.println("Distance does not exist!");
             return;
         }
