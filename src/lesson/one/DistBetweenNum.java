@@ -13,9 +13,10 @@ import java.util.ArrayList;
  */
 public class DistBetweenNum {
 
-    private static final int VALUES_IN_ARRAY = 3;
-    private static final int MAX_VALUES = 1;
-    private int[] arr;
+    private static final int VALUES_IN_ARRAY = 10;
+    private static final int MAX_VALUES = 10;
+    private int[] arr={1,2,3,4,1,2,3,4};
+
     private Integer min1;
     private Integer min2;
     private ArrayList<Integer> numMin1 = new ArrayList();
@@ -23,11 +24,11 @@ public class DistBetweenNum {
 
     public static void main(String[] args) {
         DistBetweenNum var = new DistBetweenNum();
-        var.createArray();
+//        var.createArray();
         var.readArray(var.getArr());
         var.calculateMinNum();
-//        System.out.println(var.getMin1());
-//        System.out.println(var.getMin2());
+        System.out.println(var.getMin1());
+        System.out.println(var.getMin2());
     }
 
     public void createArray() {
@@ -45,7 +46,6 @@ public class DistBetweenNum {
             if (i != arr.length - 1) {
                 System.out.print(", ");
             }
-
         }
         System.out.println("}");
     }
@@ -85,16 +85,10 @@ public class DistBetweenNum {
     }
 
     private void calculateMin2Num() {
-        int num = arr[0];
         for (int i = 0; i < arr.length; i++) {
-            if (num > min1 && num >= arr[i] && arr[i] > min1) {
+            if (arr[i] > min1 && (min2 == null || arr[i] < min2)) {
                 min2 = arr[i];
-                num = min2;
             }
-            if (i != arr.length - 1) {
-                num = arr[i + 1];
-            }
-
         }
         if (min2 != null) {
             for (int i = 0; i < arr.length; i++) {
@@ -103,7 +97,6 @@ public class DistBetweenNum {
                 }
             }
         }
-
     }
 
     private void outResultDist() {
