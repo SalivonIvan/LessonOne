@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class DistBetweenNum {
 
-    private static final int VALUES_IN_ARRAY = 1;
-    private static final int MAX_VALUES = 20;
+    private static final int VALUES_IN_ARRAY = 3;
+    private static final int MAX_VALUES = 1;
     private int[] arr;
     private Integer min1;
     private Integer min2;
@@ -26,9 +26,11 @@ public class DistBetweenNum {
         var.createArray();
         var.readArray(var.getArr());
         var.calculateMinNum();
+//        System.out.println(var.getMin1());
+//        System.out.println(var.getMin2());
     }
 
-    private void createArray() {
+    public void createArray() {
         int[] arr = new int[VALUES_IN_ARRAY];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (int) (Math.round(Math.random() * MAX_VALUES));
@@ -36,7 +38,7 @@ public class DistBetweenNum {
         this.arr = arr;
     }
 
-    private void readArray(int[] arr) {
+    public void readArray(int[] arr) {
         System.out.print("Have array {");
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i]);
@@ -57,13 +59,14 @@ public class DistBetweenNum {
         calculateMin1Num();
         calculateMin2Num();
         outResultDist();
-//        for (int numMin21 : numMin1) {
-//            System.out.println("numin1" + numMin21);
-//        }
-//        for (int numMin21 : numMin2) {
-//            System.out.println("numin2" + numMin21);
-//        }
+    }
 
+    public Integer getMin1() {
+        return min1;
+    }
+
+    public Integer getMin2() {
+        return min2;
     }
 
     private void calculateMin1Num() {
@@ -84,12 +87,12 @@ public class DistBetweenNum {
     private void calculateMin2Num() {
         int num = arr[0];
         for (int i = 0; i < arr.length; i++) {
-            if (num > min1 && num >= arr[i]) {
-                if (arr[i] > min1) {
-                    min2 = arr[i];
-                    num = min2;
-                }
-
+            if (num > min1 && num >= arr[i] && arr[i] > min1) {
+                min2 = arr[i];
+                num = min2;
+            }
+            if (i != arr.length - 1) {
+                num = arr[i + 1];
             }
 
         }
