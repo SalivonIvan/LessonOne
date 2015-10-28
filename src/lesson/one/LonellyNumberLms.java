@@ -13,53 +13,49 @@ import java.util.ArrayList;
  */
 public class LonellyNumberLms {
 
-    private int[] arrNum = {1, 2, 1, 2, 6, 52, 10, 10, 52, 5, 52, 5, 5, 1, 10, 2};
+    private int[] arrNum = {5, 10, 10, 10, 2, 2,6, 56, 56, 56, 5, 5, 2};
     private static final int NUM_REPEAT = 3;
 
     public static void main(String[] args) {
-        LonellyNumber ln = new LonellyNumber();
+        LonellyNumberLms ln = new LonellyNumberLms();
         System.out.println("Search number - " + ln.searchNum());
-        
+
     }
 
     int searchNum() {
-        System.out.println("dfdf");
         int num = 0;
         int searchNum = 0;
         ArrayList<Integer> arr = new ArrayList<>();
-        
+
+        out:
         for (int i = 0; i < arrNum.length; i++) {
+
             num = arrNum[i];
-            
-            if (arr.isEmpty()) {
-                for (Integer arr1 : arr) {
-                    System.out.println(arr1);
-                }
+
+            if (!arr.isEmpty()) {
                 for (int j = 0; j < arr.size(); j++) {
                     if (num == arr.get(j)) {
-                        break ;
+                        continue out;
                     }
                 }
-              continue;  
             }
-            
+            if (i == arrNum.length - 1) {
+                searchNum = arrNum[i];
+            }
             for (int j = i + 1; j < arrNum.length; j++) {
-                
+
                 if (num == arrNum[j]) {
-                    arr.add(j);
+                    arr.add(arrNum[j]);
                     break;
                 } else {
-                    System.out.println(j);
                     searchNum = num;
+                }
+                if (j == arrNum.length - 1) {
+                    break out;
                 }
             }
 
         }
         return searchNum;
     }
-   public  void ret(){
-        System.out.println("fdfgh");
-       
-    }
-
 }
