@@ -13,8 +13,7 @@ import java.util.ArrayList;
  */
 public class LonellyNumberLms {
 
-    private int[] arrNum = {5, 10, 10, 10, 2, 2,6, 56, 56, 56, 5, 5, 2};
-    private static final int NUM_REPEAT = 3;
+    private int[] arrNum = {5, 10, 10, 10, 2, 2, 6, 56, 56, 56, 5, 5, 2};
 
     public static void main(String[] args) {
         LonellyNumberLms ln = new LonellyNumberLms();
