@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lesson.one;
+package go.it.salivon;
 
 import go.it.main.Division;
 import java.util.ArrayList;

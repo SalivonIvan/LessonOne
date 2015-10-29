@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lesson.one;
+package go.it.salivon;
 
 /**
  *
  * @author Оля
  */
-public class ShellSort {
-   // This class should not be instantiated.
-    private ShellSort() { }
+public class Insertion {
+ // This class should not be instantiated.
+    private Insertion() { }
 
     /**
      * Rearranges the array in ascending order, using the natural order.
@@ -20,23 +20,30 @@ public class ShellSort {
     public static void sort(Comparable[] a) {
         int N = a.length;
 
-        // 3x+1 increment sequence:  1, 4, 13, 40, 121, 364, 1093, ... 
-        int h = 1;
-        while (h < N/3) h = 3*h + 1; 
-
-        while (h >= 1) {
-            // h-sort the array
-            for (int i = h; i < N; i++) {
-                for (int j = i; j >= h && less(a[j], a[j-h]); j -= h) {
-                    exch(a, j, j-h);
-                }
+        // put smallest element in position to serve as sentinel
+        int exchanges = 0;
+        for (int i = N-1; i > 0; i--) {
+            if (less(a[i], a[i-1])) {
+                exch(a, i, i-1);
+                exchanges++;
             }
-            assert isHsorted(a, h); 
-            h /= 3;
         }
+        if (exchanges == 0) return;
+
+
+        // insertion sort with half-exchanges
+        for (int i = 2; i < N; i++) {
+            Comparable v = a[i];
+            int j = i;
+            while (less(v, a[j-1])) {
+                a[j] = a[j-1];
+                j--;
+            }
+            a[j] = v;
+        }
+
         assert isSorted(a);
     }
-
 
 
    /***************************************************************************
@@ -65,13 +72,6 @@ public class ShellSort {
         return true;
     }
 
-    // is the array h-sorted?
-    private static boolean isHsorted(Comparable[] a, int h) {
-        for (int i = h; i < a.length; i++)
-            if (less(a[i], a[i-h])) return false;
-        return true;
-    }
-
     // print array to standard output
     private static void show(Comparable[] a) {
         for (int i = 0; i < a.length; i++) {
@@ -80,12 +80,12 @@ public class ShellSort {
     }
 
     /**
-     * Reads in a sequence of strings from standard input; Shellsorts them; 
-     * and prints them to standard output in ascending order. 
+     * Reads in a sequence of strings from standard input; insertion sorts them;
+     * and prints them to standard output in ascending order.
      */
     public static void main(String[] args) {
         String[] a = StdIn.readAllStrings();
-        Shell.sort(a);
+        Insertion.sort(a);
         show(a);
     }
 

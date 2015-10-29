@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lesson.one;
+package go.it.salivon;
 
 import go.it.main.MinDistanse;
 import java.util.ArrayList;
@@ -19,7 +19,6 @@ import java.util.Map;
 public class DistBetweenNum extends MinDistanse {
 
     private List<Integer> arr;
-
     private Integer min1;
     private Integer min2;
     private ArrayList<Integer> numMin1 = new ArrayList();
@@ -27,7 +26,7 @@ public class DistBetweenNum extends MinDistanse {
 
     public static void main(String[] args) {
         DistBetweenNum dbn = new DistBetweenNum();
-        System.out.println(dbn.calculateDistances(Arrays.asList(0,1,1,1,2,3,12)));
+        System.out.println(dbn.calculateDistances(Arrays.asList(0, 1, 1, 1, 2, 3, 12)));
     }
 
     public List<Integer> getArr() {
@@ -45,7 +44,7 @@ public class DistBetweenNum extends MinDistanse {
         System.out.println("}");
     }
 
-    public void calculateMinNum() {
+    private void calculateMinNum() {
         if (arr.size() != 0) {
             calculateMin1Num();
             calculateMin2Num();
