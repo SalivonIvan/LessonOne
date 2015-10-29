@@ -5,32 +5,43 @@
  */
 package lesson.one;
 
+import go.it.main.LonelyNumber;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  * @author Оля
  */
-public class LonellyNumber {
+public class LonellyNumber extends LonelyNumber {
 
-    private int[] arrNum = {1,52, 1, 2, 6,52, 6, 10, 8, 5, 52, 5, 14, 7, 17, 56, 2};
-    private static final int NUM_REPEAT = 3;
+    private List<Integer> arrNum;
+    private int numRepeat;
 
     public static void main(String[] args) {
         LonellyNumber ln = new LonellyNumber();
-        System.out.println("Search number - "+ln.searchNum());
+        System.out.println("Search number - " + ln.findLonely(Arrays.asList(1, 51, 1, 2, 6, 51, 6, 10, 8, 5, 51, 5, 14, 7, 17, 56, 2), 3));
     }
 
-    int searchNum() {
+    @Override
+    public Integer findLonely(List<Integer> array, int repeatCount) {
+        arrNum = array;
+        numRepeat = repeatCount;
+        return searchNum();
+    }
+
+    private int searchNum() {
         int num = 0;
         int numRepeat = 0;
         begin:
-        for (int i = 0; i <= arrNum.length - 1; i++) {
-            num = arrNum[i];
+        for (int i = 0; i <= arrNum.size() - 1; i++) {
+            num = arrNum.get(i);
             numRepeat = 1;
-            for (int j = i + 1; j <= arrNum.length - 1; j++) {
+            for (int j = i + 1; j <= arrNum.size() - 1; j++) {
 
-                if (num == arrNum[j]) {
+                if (num == arrNum.get(j)) {
                     numRepeat++;
-                    if (numRepeat == NUM_REPEAT) {
+                    if (numRepeat == this.numRepeat) {
                         break begin;
                     }
                 }

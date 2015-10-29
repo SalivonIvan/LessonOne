@@ -5,6 +5,7 @@
  */
 package lesson.one;
 
+import go.it.main.Division;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.Stack;
@@ -13,28 +14,32 @@ import java.util.Stack;
  *
  * @author Оля
  */
-public class LongDivision {
+public class LongDivision extends Division {
 
-    private int del1;
-    private int del2;
+    private int divident;
+    private int divisor;
     private double result;
     private Stack<Integer> stackDel1;
     private int count;
-
-    public LongDivision(int del1, int del2) {
-        this.del1 = del1;
-        this.del2 = del2;
-        parseIntToStack(this.del1);
-        countIteration();
-        print();
-    }
+    private StringBuilder outString = new StringBuilder();
 
     public static void main(String[] args) {
-        LongDivision ld = new LongDivision(25, 24);
+        LongDivision ld = new LongDivision();
+        System.out.println(ld.divide(1, 23));
 
     }
 
-    void countIteration() {
+    @Override
+    public String divide(int divident, int divisor) {
+        this.divident = divident;
+        this.divisor = divisor;
+        parseIntToStack(this.divident);
+        countIteration();
+        print();
+        return outString.toString();
+    }
+
+    private void countIteration() {
         StringBuilder sb = new StringBuilder(formatResultToStr());
         while (sb.lastIndexOf("0") != -1) {
             sb.deleteCharAt(sb.lastIndexOf("0"));
@@ -43,7 +48,7 @@ public class LongDivision {
     }
 
     private String formatResultToStr() {
-        result = (double) del1 / del2;
+        result = (double) divident / divisor;
         Formatter format = new Formatter();
         format.format("%f", result);
         String s = format.toString();
@@ -81,34 +86,35 @@ public class LongDivision {
     }
 
     private void print() {
-        if (del2 == 0) {
+        if (divisor == 0) {
             printOneString();
-            System.out.println("Division by zero - error!");
+            outString.append("Division by zero - error!" + "\n");
             return;
         }
         printOneString();
         String offset = "";
-        int a = calculatedA(stackDel1.pop(), del2);
-        int c = a - a % del2;
+        int a = calculatedA(stackDel1.pop(), divisor);
+        int c = a - a % divisor;
         printTwoString(c, formatResultToStr());
-        System.out.println("----");
+        outString.append("----" + "\n");
         for (int i = 1; i <= count; i++) {
             a = a - c;
-            a = calculatedA(a, del2);
-            c = a - a % del2;
-            System.out.println(offset + " " + a);
-            System.out.println(offset + "-" + c);
-            System.out.println(offset + "----");
+            a = calculatedA(a, divisor);
+            c = a - a % divisor;
+            outString.append(offset + " " + a + "\n");
+            outString.append(offset + "-" + c + "\n");
+            outString.append(offset + "----" + "\n");
             offset += " ";
         }
-        System.out.println(offset + " " + (a - c));
+        outString.append(offset + " " + (a - c) + "\n");
     }
 
     private void printOneString() {
-        System.out.printf("  %d | %d\n", del1, del2);
+        outString.append("  " + divident + " | " + divisor + "\n");
+
     }
 
     private void printTwoString(int c, String result) {
-        System.out.println("-" + c + " | " + result);
+        outString.append("-" + c + " | " + result + "\n");
     }
 }

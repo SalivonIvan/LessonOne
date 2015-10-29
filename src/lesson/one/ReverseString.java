@@ -5,56 +5,56 @@
  */
 package lesson.one;
 
+import go.it.main.WordsReverse;
+
 /**
  *
  * @author Оля
  */
-public class ReverseString {
+public class ReverseString extends WordsReverse {
 
     private String beginStr;
     private StringBuilder endStr;
 
     public static void main(String[] args) {
         ReverseString rs = new ReverseString();
-        rs.setBeginStr("           Hello    klkl kl      l;klklk     5456454 ");
-        rs.reverseStr();
-        rs.printResult();
+        System.out.println(rs.reverseWords("Hello Words!!!"));
+
     }
 
-    public void setBeginStr(String beginStr) {
-        this.beginStr = beginStr;
+    private String printResult() {
+        String outString = "Initial String - " + beginStr + "\n" + "End String - " + endStr;
+        return outString;
     }
 
-    public String getBeginStr() {
-        return beginStr;
-    }
-
-    void printResult() {
-        System.out.println("Initial String - " + getBeginStr());
-        System.out.println("End String - " + endStr);
-    }
-
-    void reverseStr() {
-        endStr = new StringBuilder(getBeginStr().length());
+    private void reverseStr() {
+        endStr = new StringBuilder(beginStr.length());
         StringBuilder str = new StringBuilder();
-        for (int i = 0; i < getBeginStr().length(); i++) {
-            if (getBeginStr().charAt(i) == ' ') {
+        for (int i = 0; i < beginStr.length(); i++) {
+            if (beginStr.charAt(i) == ' ') {
                 str.reverse();
                 endStr.append(str);
-                endStr.append(getBeginStr().charAt(i));
+                endStr.append(beginStr.charAt(i));
                 str.delete(0, str.length());
             }
-            if (getBeginStr().charAt(i) != ' ' && i != getBeginStr().length() - 1) {
-                str.append(getBeginStr().charAt(i));
+            if (beginStr.charAt(i) != ' ' && i != beginStr.length() - 1) {
+                str.append(beginStr.charAt(i));
 
             }
-            if (i == getBeginStr().length() - 1 && getBeginStr().charAt(i) != ' ') {
-                str.append(getBeginStr().charAt(i));
+            if (i == beginStr.length() - 1 && beginStr.charAt(i) != ' ') {
+                str.append(beginStr.charAt(i));
                 str.reverse();
                 endStr.append(str);
 
                 str.delete(0, str.length());
             }
         }
+    }
+
+    @Override
+    public String reverseWords(String phrase) {
+        beginStr = phrase;
+        reverseStr();
+        return printResult();
     }
 }
