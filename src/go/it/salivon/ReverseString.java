@@ -18,7 +18,7 @@ public class ReverseString extends WordsReverse {
 
     public static void main(String[] args) {
         ReverseString rs = new ReverseString();
-        System.out.println(rs.reverseWords("Hello Words!!!"));
+        System.out.println(rs.reverseWords("12"));
 
     }
 
@@ -53,8 +53,14 @@ public class ReverseString extends WordsReverse {
 
     @Override
     public String reverseWords(String phrase) {
+        if (phrase==null) {
+            return "do not enter text";
+        }
+        if (phrase.equals("")) {
+            return "";
+        }
         beginStr = phrase;
         reverseStr();
-        return printResult();
+        return endStr.toString();
     }
 }
