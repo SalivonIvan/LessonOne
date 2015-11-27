@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package go.it.salivon;
 
 import go.it.main.MinDistanse;
@@ -12,10 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author Оля
- */
 public class DistBetweenNum extends MinDistanse {
 
     private List<Integer> arr;
@@ -45,7 +36,7 @@ public class DistBetweenNum extends MinDistanse {
     }
 
     private void calculateMinNum() {
-        if (arr.size() != 0) {
+        if (!arr.isEmpty()) {
             calculateMin1Num();
             calculateMin2Num();
         }
@@ -69,11 +60,9 @@ public class DistBetweenNum extends MinDistanse {
     }
 
     private void calculateMin2Num() {
-        for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i) > min1 && (min2 == null || arr.get(i) < min2)) {
-                min2 = arr.get(i);
-            }
-        }
+        arr.stream().filter((arr1) -> (arr1 > min1 && (min2 == null || arr1 < min2))).forEach((arr1) -> {
+            min2 = arr1;
+        });
         if (min2 != null) {
             for (int i = 0; i < arr.size(); i++) {
                 if (min2 == arr.get(i)) {
@@ -85,18 +74,18 @@ public class DistBetweenNum extends MinDistanse {
 
     private Map<String, Integer> outResultDist() {
         Map<String, Integer> outText = new HashMap<>();
-        if ((arr.size() == 1 || min2 == null) || arr.size() == 0) {
+        if ((arr.size() == 1 || min2 == null) || arr.isEmpty()) {
             outText.put("Distance does not exist!", 0);
             return outText;
         }
 
-        for (int i = 0; i < numMin1.size(); i++) {
-            for (int j = 0; j < numMin2.size(); j++) {
-                int distance = Math.abs(numMin1.get(i) - numMin2.get(j));
-                String str = "\n" + "Distance between min1(" + min1 + "|" + numMin1.get(i) + ") and min2(" + min2 + "|" + numMin2.get(j) + ")";
+        numMin1.stream().forEach((numMin11) -> {
+            numMin2.stream().forEach((numMin21) -> {
+                int distance = Math.abs(numMin11 - numMin21);
+                String str = "\n" + "Distance between min1(" + min1 + "|" + numMin11 + ") and min2(" + min2 + "|" + numMin21 + ")";
                 outText.put(str, distance);
-            }
-        }
+            });
+        });
         return outText;
     }
 

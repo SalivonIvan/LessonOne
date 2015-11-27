@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package go.it.salivon;
 
 import go.it.main.Sort;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- *
- * @author Оля
- */
 public class InsertionSort extends Sort {
 
     public static void main(String[] args) {
@@ -67,8 +58,8 @@ public class InsertionSort extends Sort {
     }
 
     private void show(List<Integer> a) {
-        for (int i = 0; i < a.size(); i++) {
-            System.out.print(a.get(i) + " ");
-        }
+        a.stream().forEach((a1) -> {
+            System.out.print(a1 + " ");
+        });
     }
 }

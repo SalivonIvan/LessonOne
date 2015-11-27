@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package go.it.salivon;
 
 import go.it.main.Division;
-import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.Stack;
 
-/**
- *
- * @author Оля
- */
 public class LongDivision extends Division {
 
     private int divident;
@@ -101,20 +91,20 @@ public class LongDivision extends Division {
             a = a - c;
             a = calculatedA(a, divisor);
             c = a - a % divisor;
-            outString.append(offset + " " + a + "\n");
-            outString.append(offset + "-" + c + "\n");
-            outString.append(offset + "----" + "\n");
+            outString.append(offset).append(" ").append(a).append("\n");
+            outString.append(offset).append("-").append(c).append("\n");
+            outString.append(offset).append("----" + "\n");
             offset += " ";
         }
-        outString.append(offset + " " + (a - c) + "\n");
+        outString.append(offset).append(" ").append(a - c).append("\n");
     }
 
     private void printOneString() {
-        outString.append("  " + divident + " | " + divisor + "\n");
+        outString.append("  ").append(divident).append(" | ").append(divisor).append("\n");
 
     }
 
     private void printTwoString(int c, String result) {
-        outString.append("-" + c + " | " + result + "\n");
+        outString.append("-").append(c).append(" | ").append(result).append("\n");
     }
 }

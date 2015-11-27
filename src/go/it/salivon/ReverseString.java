@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package go.it.salivon;
 
 import go.it.main.WordsReverse;
 
-/**
- *
- * @author Оля
- */
 public class ReverseString extends WordsReverse {
 
     private String beginStr;
@@ -53,7 +44,7 @@ public class ReverseString extends WordsReverse {
 
     @Override
     public String reverseWords(String phrase) {
-        if (phrase==null) {
+        if (phrase == null) {
             return "do not enter text";
         }
         if (phrase.equals("")) {
